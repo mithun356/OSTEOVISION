@@ -169,7 +169,7 @@ def overlay_heatmap_on_image(img, heatmap, alpha=0.4):
     return tf.keras.preprocessing.image.array_to_img(superimposed_img)
 
 # Load the trained model
-MODEL_PATH = r"fake_news_cnn_model_V2.h5"  # Updated model path
+MODEL_PATH = r"src\models\OSTEO_VISION_MODEL_6_ Knee Osteoarthritis Detection with Fine-Tuned ResNet152V2 on dataset 3 MODEL_6.h5"  # Updated model path
 try:
     model = tf.keras.models.load_model(MODEL_PATH)
 except Exception as e:
