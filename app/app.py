@@ -192,55 +192,55 @@
 # # Main section layout
 # st.title("OSTEO VISION")
 
-target_size = (224, 224)
-class_names = ["KL-GRADE 0", "KL-GRADE 1", "KL-GRADE 2", "KL-GRADE 3", "KL-GRADE 4"]
+# target_size = (224, 224)
+# class_names = ["KL-GRADE 0", "KL-GRADE 1", "KL-GRADE 2", "KL-GRADE 3", "KL-GRADE 4"]
 
-if uploaded_file:
-    # Preprocess the image
-    img = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=target_size)
-    img_array = tf.keras.preprocessing.image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0)
-    img_array = tf.keras.applications.xception.preprocess_input(img_array)
+# if uploaded_file:
+#     # Preprocess the image
+#     img = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=target_size)
+#     img_array = tf.keras.preprocessing.image.img_to_array(img)
+#     img_array = np.expand_dims(img_array, axis=0)
+#     img_array = tf.keras.applications.xception.preprocess_input(img_array)
 
-    # Make predictions
-    with st.spinner("Analyzing the image..."):
-        predictions = model.predict(img_array)[0]
-        predicted_class = class_names[np.argmax(predictions)]
-        prediction_probabilities = 100 * predictions
+#     # Make predictions
+#     with st.spinner("Analyzing the image..."):
+#         predictions = model.predict(img_array)[0]
+#         predicted_class = class_names[np.argmax(predictions)]
+#         prediction_probabilities = 100 * predictions
 
-    # Display prediction result
-    st.subheader("Prediction Result ✅")
-    st.metric(label="Predicted Severity Level", value=predicted_class, delta=f"Confidence: {np.max(prediction_probabilities):.2f}%")
+#     # Display prediction result
+#     st.subheader("Prediction Result ✅")
+#     st.metric(label="Predicted Severity Level", value=predicted_class, delta=f"Confidence: {np.max(prediction_probabilities):.2f}%")
 
-    # Grad-CAM heatmap
-    heatmap = make_gradcam_heatmap(grad_model, img_array)
-    heatmap_overlay = overlay_heatmap_on_image(
-        tf.keras.preprocessing.image.img_to_array(img),
-        heatmap
-    )
+#     # Grad-CAM heatmap
+#     heatmap = make_gradcam_heatmap(grad_model, img_array)
+#     heatmap_overlay = overlay_heatmap_on_image(
+#         tf.keras.preprocessing.image.img_to_array(img),
+#         heatmap
+#     )
 
-    # Display side-by-side layout
-    col1, col2 = st.columns(2)
+#     # Display side-by-side layout
+#     col1, col2 = st.columns(2)
 
-    with col1:
-        st.subheader("📸 Input Image")
-        st.image(uploaded_file, caption="Uploaded X-ray Image", use_column_width=True)
+#     with col1:
+#         st.subheader("📸 Input Image")
+#         st.image(uploaded_file, caption="Uploaded X-ray Image", use_column_width=True)
 
-    with col2:
-        st.subheader("📊 Explainability with Grad-CAM")
-        st.image(heatmap_overlay, caption="Grad-CAM Heatmap", use_column_width=True)
+#     with col2:
+#         st.subheader("📊 Explainability with Grad-CAM")
+#         st.image(heatmap_overlay, caption="Grad-CAM Heatmap", use_column_width=True)
 
-    # Bar chart visualization of predictions
-    st.subheader("📈 Prediction Confidence Levels")
-    fig, ax = plt.subplots(figsize=(5, 2))  # Reduced chart size
-    ax.barh(class_names, prediction_probabilities, color='skyblue')
-    ax.set_xlim([0, 100])
-    ax.set_xlabel("Confidence (%)")
-    ax.set_title("Prediction Confidence Levels")
-    st.pyplot(fig)
+#     # Bar chart visualization of predictions
+#     st.subheader("📈 Prediction Confidence Levels")
+#     fig, ax = plt.subplots(figsize=(5, 2))  # Reduced chart size
+#     ax.barh(class_names, prediction_probabilities, color='skyblue')
+#     ax.set_xlim([0, 100])
+#     ax.set_xlabel("Confidence (%)")
+#     ax.set_title("Prediction Confidence Levels")
+#     st.pyplot(fig)
 
-else:
-    st.info("Please upload an X-ray image to begin analysis.")
+# else:
+#     st.info("Please upload an X-ray image to begin analysis.")
 
 
 import os
