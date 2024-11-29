@@ -47,7 +47,7 @@ def overlay_heatmap_on_image(img, heatmap, alpha=0.4):
     return tf.keras.preprocessing.image.array_to_img(superimposed_img)
 
 # Load the trained model
-MODEL_PATH = os.getenv("MODEL_PATH", r"C:\Users\mithu\Desktop\osteo_vision\src\models\OSTEO_VISION_MODEL_6_ Knee Osteoarthritis Detection with Fine-Tuned ResNet152V2 on dataset 3 MODEL_6.h5")
+MODEL_PATH = os.getenv("MODEL_PATH", r"src\models\OSTEO_VISION_MODEL_6_ Knee Osteoarthritis Detection with Fine-Tuned ResNet152V2 on dataset 3 MODEL_6.h5")
 try:
     model = tf.keras.models.load_model(MODEL_PATH)
 except Exception as e:
