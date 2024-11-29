@@ -61,8 +61,8 @@ grad_model = tf.keras.models.Model(
 )
 
 # Sidebar with images
-st.sidebar.image(r"C:\Users\mithu\Desktop\osteo_vision\app\img\jssate .png", caption="JSSATE-B", width=220)
-st.sidebar.image(r"C:\Users\mithu\Desktop\osteo_vision\app\img\jssaher.jpg", caption="JSSAHER", width=220)
+st.sidebar.image(r"app\img\jssate .png", caption="JSSATE-B", width=220)
+st.sidebar.image(r"app\img\jssaher.jpg", caption="JSSAHER", width=220)
 
 # Sidebar for user inputs
 uploaded_file = st.sidebar.file_uploader("Upload an X-ray image", type=["png", "jpg", "jpeg"])
